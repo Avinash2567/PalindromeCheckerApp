@@ -1,30 +1,29 @@
 import java.util.Scanner;
-import java.util.Deque;
-import java.util.ArrayDeque;
+import java.util.LinkedList;
+
 class PalindromeCheckerApp{
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        Deque<Character> deque = new ArrayDeque<>();
+        LinkedList<Character> list = new LinkedList<>();
 
-        // Add each character into deque
+        // Add each character to the LinkedList
         for (char c : input.toCharArray()) {
-            deque.addLast(c);
+            list.add(c);
         }
 
         boolean isPalindrome = true;
 
-        // Compare from both ends
-        while (deque.size() > 1) {
+        // Compare until one or zero elements remain
+        while (list.size() > 1) {
 
-            char front = deque.removeFirst();
-            char back = deque.removeLast();
+            char first = list.removeFirst();
+            char last = list.removeLast();
 
-            if (front != back) {
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
