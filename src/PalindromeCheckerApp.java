@@ -7,15 +7,23 @@ class PalindromeCheckerApp{
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        String reversed = "";
+        // Convert string to character array
+        char[] chars = input.toCharArray();
 
-        // Reverse the string manually
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed = reversed + input.charAt(i);
+        int start = 0;
+        int end = chars.length - 1;
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
 
-        // Compare original and reversed
-        if (input.equals(reversed)) {
+        if (isPalindrome) {
             System.out.println("It is a Palindrome.");
         } else {
             System.out.println("It is NOT a Palindrome.");
