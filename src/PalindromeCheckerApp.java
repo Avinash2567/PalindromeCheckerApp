@@ -1,24 +1,30 @@
 import java.util.Scanner;
-import java.util.Stack;
+import java.util.Deque;
+import java.util.ArrayDeque;
 class PalindromeCheckerApp{
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Push each character into stack
+        // Add each character into deque
         for (char c : input.toCharArray()) {
-            stack.push(c);
+            deque.addLast(c);
         }
 
         boolean isPalindrome = true;
 
-        // Compare original string with popped characters
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+        // Compare from both ends
+        while (deque.size() > 1) {
+
+            char front = deque.removeFirst();
+            char back = deque.removeLast();
+
+            if (front != back) {
                 isPalindrome = false;
                 break;
             }
@@ -31,11 +37,6 @@ class PalindromeCheckerApp{
         }
 
         sc.close();
-
-
-
-
-
 
 
     }
