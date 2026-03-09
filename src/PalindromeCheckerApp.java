@@ -1,42 +1,31 @@
-import java.util.Scanner;
-import java.util.LinkedList;
 
+import java.util.Scanner;
 class PalindromeCheckerApp{
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        LinkedList<Character> list = new LinkedList<>();
-
-        // Add each character to the LinkedList
-        for (char c : input.toCharArray()) {
-            list.add(c);
-        }
+        // Normalize the string
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
         boolean isPalindrome = true;
 
-        // Compare until one or zero elements remain
-        while (list.size() > 1) {
+        // Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
 
-            char first = list.removeFirst();
-            char last = list.removeLast();
-
-            if (first != last) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        if (isPalindrome) {
-            System.out.println("It is a Palindrome.");
-        } else {
-            System.out.println("It is NOT a Palindrome.");
-        }
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome : " + isPalindrome);
 
         sc.close();
-
 
     }
 }
